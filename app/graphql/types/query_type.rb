@@ -10,4 +10,12 @@ Types::QueryType = GraphQL::ObjectType.define do
       Post.find(args[:id])
     }
   end
+
+  field :posts, types[Types::PostType] do
+    description 'Retrieve a list of all blog posts'
+
+    resolve ->(obj, args, ctx) {
+      Post.all
+    }
+  end
 end
