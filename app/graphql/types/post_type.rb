@@ -11,4 +11,5 @@ Types::PostType = GraphQL::ObjectType.define do
     }
   end
   field :user, Types::UserType, 'The user who wrote the blog post'
+  field :comments, types[Types::CommentType], 'Comments that have been posted to the blog post'
 end
