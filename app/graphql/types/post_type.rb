@@ -10,4 +10,5 @@ Types::PostType = GraphQL::ObjectType.define do
       obj.body[0, 5]
     }
   end
+  field :user, Types::UserType, 'The user who wrote the blog post'
 end
