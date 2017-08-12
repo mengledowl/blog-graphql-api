@@ -1,5 +1,5 @@
 Types::PostType = GraphQL::ObjectType.define do
-  name 'BlogPost'
+  name 'PostType'
   description 'Represents a blog post in the system'
 
   field :id, !types.ID, 'The ID of the blog post'
