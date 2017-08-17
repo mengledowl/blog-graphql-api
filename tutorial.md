@@ -432,7 +432,7 @@ The answer is **mutations**.
 
 Mutations are a root type that allows us to _perform queries that have consequences_. Let's get started with the code we will need to create a new post.
 
-Start by adding a new file where our mutations will live at `graphql/mutations/mutation_type.rb`:
+Start by adding a new file where our mutations will live at `app/graphql/mutations/mutation_type.rb`:
 
 ```
 Mutations::MutationType = GraphQL::ObjectType.define do
@@ -455,7 +455,7 @@ Mutations::MutationType = GraphQL::ObjectType.define do
 end
 ```
 
-We've seen all of this before - an object with fields, and a field that has a description, arguments, and a resolve proc. The main difference is that in our `resolve` proc, we create data rather than just retrieving it. Now we need to plug our new `MutationType` into our schema. Open up `graphql/blog_graphql_api_schema.rb` and `mutation(Mutations::MutationType)` so that it looks like this:
+We've seen all of this before - an object with fields, and a field that has a description, arguments, and a resolve proc. The main difference is that in our `resolve` proc, we create data rather than just retrieving it. Now we need to plug our new `MutationType` into our schema. Open up `app/graphql/blog_graphql_api_schema.rb` and `mutation(Mutations::MutationType)` so that it looks like this:
 
 ```
 BlogGraphqlApiSchema = GraphQL::Schema.define do
