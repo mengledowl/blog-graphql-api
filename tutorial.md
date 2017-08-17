@@ -38,7 +38,7 @@ We never created our database, so let's go ahead and do that and then run our mi
 
 `$ rails db:create && rails db:migrate`
 
-So now we should have our three models which look like this:
+This should have created three models. Let's open them up and set up the relationships real quick:
 
 ```
 # models/post.rb
@@ -296,7 +296,7 @@ field :posts, types[Types::PostType] do
 end
 ```
 
-Now we can generate some seed data using the fantastic [Faker gem](https://github.com/stympy/faker) so we have a bunch of blog posts (run this in the rails console or stick it in your `seeds.rb` file and run `rails db:seed`):
+Now we can generate some seed data using the fantastic [Faker gem](https://github.com/stympy/faker) so we have a bunch of blog posts. Make sure you add it to your Gemfile and then run this script in the rails console or stick it in your `seeds.rb` file and run `rails db:seed`:
 
 ```
 100.times { Post.create(title: Faker::Lorem.words(rand(1..8)).join(' '), body: Faker::Lorem.paragraphs) }
@@ -418,7 +418,11 @@ And now we can construct queries to get all kinds of neat information:
 }
 ```
 
-If you run that query and look at the logs, you may notice something: N+1 queries. You'll want to make sure you're mitigating the risk of these and thinking about how queries could be constructed to cause this to happen. Make sure you're including things as you need to in your resolvers.
+If you run that query and look at the logs, you may notice something: N+1 queries. You'll want to make sure you're mitigating the risk of these and thinking about how queries could be constructed to cause this to happen. Make sure you're including things as you need to in your resolvers. I won't get into how to handle this as it's outside of the scope of this tutorial, but there are several ways people generally handle this issue:
+
+* [graphql-batch gem](https://github.com/Shopify/graphql-batch)
+* [batch-loader gem](https://github.com/exaspark/batch-loader)
+* Using `.includes` on your ActiveRecord database calls to preload all associations (naive approach)
 
 ### Creating A Post
 
